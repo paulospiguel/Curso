@@ -1,35 +1,29 @@
-const express = require('express');
+const express = require('express')
+const nunjunks = require('nunjucks')
 
-const app = express();
+const app = express()
+nunjunks.configure('views', {
+  autoescape: true,
+  express: app,
+  watch: true
+})
 
-const logMiddleware = (req, res, next) =>{
-  console.log(
-    `HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`
-  );
-  
-  req.nameApp = 'GOnode';
+app.use(express.urlencoded({ express: false }))
+app.set('view engine', 'njk')
 
-  return next();
-};
+const users = ['Paulo', 'Lívia', 'Adriana', 'Oliver']
 
-app.use(logMiddleware);
+app.get('/', (req, res) => {
+  return res.render('list', { users })
+})
 
-app.get('/', (req, res)=> {
-  return res.end(`Bem-vindo, ${req.query.name}, você está aprendendo ${req.nameApp}`);
-});
+app.get('/new', (req, res) => {
+  return res.render('new')
+})
 
-// app.get('/', logMiddleware, (req, res)=> {
-//   return res.end(`Bem-vindo, ${req.query.name}`);
-// });
+app.post('/create', (req, res) => {
+  users.push(req.body.user)
+  res.redirect('/')
+})
 
-app.get('/nome/:name', (req, res) =>{
-  return res.json({
-    message: `Bem-vindo, ${req.params.name}`
-  });
-});
-
-// app.get('/nome/:name', (req, res) =>{
-//   return res.end(`Bem vindo, ${req.params.name}`);
-// });
-
-app.listen(3000);
+app.listen(3000)
