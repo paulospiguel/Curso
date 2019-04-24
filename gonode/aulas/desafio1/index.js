@@ -41,12 +41,15 @@ app.post('/check', (req, res) => {
   const hoje = new Date().getTime()
   const dtNiver = new Date(age).getTime()
 
-  console.log(hoje - dtNiver)
+  const timeDiff = Math.abs(hoje - dtNiver)
+  const diffAno = Math.trunc(timeDiff / (1000 * 60 * 60 * 24 * 365))
 
-  if (age >= 18) {
-    return res.redirect(`/major?age=${age}`)
+  // console.log(diffAno)
+
+  if (diffAno >= 18) {
+    return res.redirect(`/major?age=${diffAno}`)
   } else {
-    return res.redirect(`/minor?age=${age}`)
+    return res.redirect(`/minor?age=${diffAno}`)
   }
 })
 
