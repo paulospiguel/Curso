@@ -1,35 +1,36 @@
+/* eslint-disable space-before-function-paren */
 const express = require('express')
 const nunjucks = require('nunjucks') // Gerenciados de páginas
 const path = require('path') // Configuração de caminhos (Automático)
 
 class App {
-  constructor () {
+  constructor() {
     this.express = express()
     this.isDev = process.env.NODE.ENV !== 'production' // Verifica ambiente de produção/desenvolvimento/teste
 
     this.middelwares()
     this.views()
-    this.routers()
+    this.routes()
   }
 
   // Manipulação de dados
-  middelwares () {
+  middelwares() {
     this.express.use(express.urlencoded({ extended: false }))
   }
 
   // Páginas
-  views () {
+  views() {
     // Configuração de barras
     nunjucks.configure(path.resolve(__dirname, 'app', 'views'), {
       watch: this.isDev, // Assistir compilação das views
       express: this.express, // Servidor
       autoescape: true
     })
-
+    this.express.use(express.static(path.resolve(__dirname, 'public')))
     this.express.set('view engine', 'njk')
   }
   // Roteamento
-  routers () {
+  routes() {
     this.express.use(require('./routes'))
   }
 }
