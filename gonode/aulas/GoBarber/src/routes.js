@@ -5,6 +5,6 @@ const routes = express.Router()
 const UserController = require('./app/controller/UserController')
 
 routes.get('/signup', UserController.create)
-routes.post('/singup', UserController.store)
+routes.post('/signup', UserController.store)
 
 module.exports = routes
