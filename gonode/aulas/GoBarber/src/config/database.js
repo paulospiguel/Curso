@@ -1,7 +1,7 @@
 module.exports = {
   dialect: 'mysql',
   port: 3306,
-  host: '192.168.99.100',
+  host: 'localhost',
   username: 'root',
   password: 'gonodemodulo2',
   database: 'gonodemodulo2',
