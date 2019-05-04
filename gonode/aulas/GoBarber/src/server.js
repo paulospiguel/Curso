@@ -1,5 +1,7 @@
 /* eslint-disable space-before-function-paren */
 const express = require('express')
+const session = require('express-session') // Cria sessão de usuários
+const LokiStore = require('connect-loki')(session) // Cria banco de dados para armazenar sessões
 const nunjucks = require('nunjucks') // Gerenciados de páginas
 const path = require('path') // Configuração de caminhos (Automático)
 
@@ -16,6 +18,17 @@ class App {
   // Manipulação de dados
   middelwares() {
     this.express.use(express.urlencoded({ extended: false }))
+    this.express.use(
+      session({
+        name: 'root',
+        secret: 'MyAppSecret',
+        resave: true,
+        store: new LokiStore({
+          path: path.resolve(__dirname, '..', 'tmp', 'sessions.db')
+        }),
+        saveUninitialized: true
+      })
+    )
   }
 
   // Páginas
