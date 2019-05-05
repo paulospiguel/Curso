@@ -1,6 +1,8 @@
+const { User } = require('../models')
 class DashboardController {
-  async create (req, res) {
-    return res.render('dashboard')
+  async index (req, res) {
+    const providers = await User.findAll({ where: { provider: true } }) // Busca no banco
+    return res.render('dashboard', { providers })
   }
 }
 
