@@ -4,6 +4,7 @@ const session = require('express-session') // Cria sessão de usuários
 const LokiStore = require('connect-loki')(session) // Cria banco de dados para armazenar sessões
 const nunjucks = require('nunjucks') // Gerenciados de páginas
 const path = require('path') // Configuração de caminhos (Automático)
+const flash = require('connect-flash') // Cria mensagens de erro
 
 class App {
   constructor() {
@@ -18,6 +19,7 @@ class App {
   // Manipulação de dados
   middelwares() {
     this.express.use(express.urlencoded({ extended: false }))
+    this.express.use(flash())
     this.express.use(
       session({
         name: 'root',

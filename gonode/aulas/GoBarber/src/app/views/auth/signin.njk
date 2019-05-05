@@ -5,6 +5,9 @@
 
       <img src="/images/logo.svg" height="42"/>
 
+      {# Mensagem de erro #}
+      {% include "_partials/flash.njk" %}
+
       <input type="email" name="email" placeholder="Seu e-mail" required />
       <input type="password" name="password" placeholder="Senha secreta" required/>
 

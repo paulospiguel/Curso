@@ -11,6 +11,12 @@ const UserController = require('./app/controller/UserController')
 const SessionController = require('./app/controller/SessionController')
 const DashboardController = require('./app/controller/DashboardController')
 
+routes.use((req, res, next) => {
+  res.locals.flashSucess = req.flash('sucess')
+  res.locals.flashError = req.flash('error')
+  return next()
+})
+
 routes.get('/', guestMiddleware, SessionController.create)
 routes.post('/signin', SessionController.store)
 
