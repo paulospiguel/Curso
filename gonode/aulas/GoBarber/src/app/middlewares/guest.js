@@ -4,5 +4,9 @@ module.exports = (req, res, next) => {
     return next()
   }
 
+  if (req.session.user.provider) {
+    return res.redirect('/app/appointmentday')
+  }
+
   return res.redirect('/app/dashboard')
 }

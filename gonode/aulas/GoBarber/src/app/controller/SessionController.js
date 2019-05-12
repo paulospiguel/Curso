@@ -18,7 +18,11 @@ class SessionController {
       return res.redirect('/')
     }
 
-    req.session.user = user
+    req.session.user = user // Salva as informaçoes da sessão na variavel
+
+    if (user.provider) {
+      return res.redirect('/app/appointmentday')
+    }
 
     return res.redirect('/app/dashboard')
   }

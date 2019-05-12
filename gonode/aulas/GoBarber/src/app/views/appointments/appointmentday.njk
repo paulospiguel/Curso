@@ -1,0 +1,27 @@
+{% extends "_layouts/default.njk"%}
+{% block body %}
+  <div class="content" style="max-width: 80%;">
+    <strong>SERVIÇOS AGENDADOS PARA HOJE</strong>
+    <div class="provider">
+      <div>
+        <img src="/files/{{ user.avatar }}" />
+        <strong>{{ user.name }}</strong>
+      </div>
+    </div>
+    {# {% if appointments.user_id === true %} #}
+      <ul class="providers">
+      {% if appointments %}
+        {% for appointments in appointments %}
+          <li class="appointments">
+            <div>
+              <strong>{{ appointments.user_id }}</strong>
+            </div>
+          </li>
+        {% endfor %}
+      {% else %}
+              <strong>Sem agendamento para hoje</strong>
+      {% endif %}
+      </ul>
+  <a class="logout" href="/app/logout">Sair</a>
+  </div>
+{% endblock %}
