@@ -2,6 +2,8 @@
 {% block body %}
   <div class="content" style="max-width: 80%;">
     <strong>SERVIÇOS AGENDADOS PARA HOJE</strong>
+    <strong style="margin: 0px">{{ today }}</strong>
+    <p>{{ week }}</p>
     <div class="provider">
       <div>
         <img src="/files/{{ user.avatar }}" />
@@ -14,7 +16,7 @@
         {% for appointments in appointments %}
           <li class="appointments">
             <div>
-              <strong>{{ appointments.user_id }}</strong>
+              <p>{{ appointments.user.name }}</p>
             </div>
           </li>
         {% endfor %}

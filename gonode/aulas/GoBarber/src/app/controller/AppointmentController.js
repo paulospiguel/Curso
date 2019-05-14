@@ -1,7 +1,5 @@
 /* eslint-disable space-before-function-paren */
 const { User, Appointment } = require('../models')
-const moment = require('moment')
-const { Op } = require('sequelize')
 
 class AppointmentController {
   async create(req, res) {
@@ -22,33 +20,6 @@ class AppointmentController {
     })
 
     return res.redirect('/app/dashboard')
-  }
-
-  async appointmentday(req, res) {
-    const { id } = req.session.user
-    const date = moment()
-
-    const appointments = await Appointment.findAll({
-      where: {
-        provider_id: id,
-        date: {
-          [Op.between]: [
-            date.startOf('day').format(),
-            date.endOf('day').format()
-          ]
-        }
-      }
-    })
-
-    // console.log(appointments)
-
-    // const person = await User.findByPk(appointments.user_id)
-    // console.log(person)
-    // if (appointments) {
-    return res.render('appointments/appointmentday', { appointments })
-    // }
-
-    // return res.render('appointments/appointmentday')
   }
 }
 
