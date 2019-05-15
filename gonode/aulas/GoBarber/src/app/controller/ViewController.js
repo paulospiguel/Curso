@@ -22,7 +22,7 @@ class ViewController {
         }
       }
     })
-
+    console.log(appointments)
     return res.render('appointments/appointmentday', {
       appointments,
       today,

@@ -199,6 +199,17 @@ ul.providers {
   align-items: center;
   justify-content: space-between;
 }
+.profile {
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 
 .provider div {
   display: flex;
@@ -289,4 +300,26 @@ ul.providers {
 
 .main-wrapper .content form button:hover {
   background: #634dac;
+}
+.table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr:hover {
+  background-color: #c0c0c0;
+  cursor: pointer;
+}
+th {
+  background-color: #4caf50;
+  color: white;
 }

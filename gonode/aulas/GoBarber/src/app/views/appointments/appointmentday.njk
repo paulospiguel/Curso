@@ -1,4 +1,5 @@
 {% extends "_layouts/default.njk"%}
+
 {% block body %}
   <div class="content" style="max-width: 80%;">
     <strong>SERVIÇOS AGENDADOS PARA HOJE</strong>
@@ -11,19 +12,34 @@
       </div>
     </div>
     {# {% if appointments.user_id === true %} #}
-      <ul class="providers">
       {% if appointments %}
-        {% for appointments in appointments %}
-          <li class="appointments">
-            <div>
-              <p>{{ appointments.user.name }}</p>
-            </div>
-          </li>
-        {% endfor %}
+      <table class="table">
+              <thead>
+                <tr>
+                  <th>Agendamento</th>
+                  <th>Nome do Cliente</th>
+                  <th>Email</th>
+                  <th>Foto Perfil</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for appointments in appointments|sort(false, true, 'time') %}
+                <tr>
+                  <td><strong>{{ appointments.date}}</strong></td>
+                  <td><strong>{{ appointments.user.name }}</strong></td>
+                  <td><strong>{{ appointments.user.email }}</strong></td>
+                  <td>
+                      <div class="profile">
+                        <img src="/files/{{ appointments.user.avatar }}" />
+                      </div>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
       {% else %}
               <strong>Sem agendamento para hoje</strong>
       {% endif %}
-      </ul>
   <a class="logout" href="/app/logout">Sair</a>
   </div>
 {% endblock %}
