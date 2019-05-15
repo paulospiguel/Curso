@@ -23,9 +23,9 @@
                 </tr>
               </thead>
               <tbody>
-              {% for appointments in appointments|sort(false, true, 'time') %}
+              {% for appointments in appointments %}
                 <tr>
-                  <td><strong>{{ appointments.date}}</strong></td>
+                  <td><strong>{{ appointments.date }}</strong></td>
                   <td><strong>{{ appointments.user.name }}</strong></td>
                   <td><strong>{{ appointments.user.email }}</strong></td>
                   <td>
