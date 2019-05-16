@@ -1,5 +1,11 @@
-const express = require("express");
+const express = require('express')
 
-const routes = express.Router();
+const routes = express.Router()
 
-module.exports = routes;
+// ######### IMPORTS CONTROLLERS ################
+const UserController = require('./app/controllers/UserController')
+
+// ######### ROUTES ################
+routes.post('/users', UserController.store)
+
+module.exports = routes
