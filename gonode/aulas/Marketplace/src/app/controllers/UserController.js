@@ -1,11 +1,11 @@
 /* eslint-disable space-before-function-paren */
-const User = require('../models')
+const User = require('../models/User')
 
 class UserController {
   async store(req, res) {
     const { email } = req.body
     if (await User.findOne({ email })) {
-      return res.status(400).json('Email já cadastrado no banco!')
+      return res.status(400).json({ error: 'Usuário já cadastrado!' })
     }
 
     const user = await User.create(req.body)
