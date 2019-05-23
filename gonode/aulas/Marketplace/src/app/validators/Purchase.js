@@ -2,7 +2,7 @@ const Joi = require('joi')
 
 module.exports = {
   body: {
-    ad: Joi.string().require(),
-    content: Joi.string().require()
+    ad: Joi.string().required(),
+    content: Joi.string().required()
   }
 }

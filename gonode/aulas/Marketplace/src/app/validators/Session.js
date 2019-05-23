@@ -4,7 +4,7 @@ module.exports = {
   body: {
     email: Joi.string()
       .email()
-      .require(),
-    password: Joi.string().require()
+      .required(),
+    password: Joi.string().required()
   }
 }
