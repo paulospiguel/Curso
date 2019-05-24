@@ -1,4 +1,7 @@
 /* eslint-disable space-before-function-paren */
+require('dotenv').config()
+require('moment').locale('pt-BR')
+
 const express = require('express')
 const mongoose = require('mongoose')
 const Sentry = require('@sentry/node')
