@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 const Mail = require('../services/Mail')
 
 class PurchaseMail {
