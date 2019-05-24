@@ -3,8 +3,7 @@ const mongoose = require('mongoose')
 
 const Purchase = new mongoose.Schema({
   ad: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Ad',
+    type: String,
     required: true
   },
   user: {
