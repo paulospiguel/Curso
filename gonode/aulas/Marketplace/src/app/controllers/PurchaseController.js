@@ -16,37 +16,19 @@ class PurchaseController {
     const purchaseAd = await Ad.findById(ad).populate('author')
     const user = await User.findById(req.userId)
 
+    /** SALVANDO NO BANCO DE DADOS */
+    const purchase = await Purchase.create({
+      content,
+      ad,
+      user: user._id
+    })
+
     /** ENVIANDO PARA FILA DE ENVIO DE EMAIL REDIS */
     Queue.create(PurchaseMail.key, {
       ad: purchaseAd,
       user,
       content
     }).save()
-
-    /** SALVANDO NO BANCO DE DADOS */
-
-    const purchase = await Purchase.create({
-      ...req.body,
-      user: req.userId
-    })
-
-    return res.json(purchase)
-  }
-
-  async purchaseUpdate (req, res) {
-    const purchaseAd = await Purchase.findById(req.params.id)
-
-    const purchase = await Purchase.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
-    })
-
-    await Ad.findByIdAndUpdate(
-      purchaseAd.ad,
-      { purchasedBy: purchaseAd.id },
-      {
-        new: true
-      }
-    )
 
     return res.json(purchase)
   }

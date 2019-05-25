@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 
 const Purchase = new mongoose.Schema({
   ad: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Ad',
     required: true
   },
   user: {
@@ -14,11 +15,6 @@ const Purchase = new mongoose.Schema({
   content: {
     type: String,
     required: true
-  },
-  status: {
-    type: String,
-    required: true,
-    default: null
   },
   createAt: {
     type: Date,
