@@ -15,6 +15,11 @@ const Purchase = new mongoose.Schema({
     type: String,
     required: true
   },
+  status: {
+    type: String,
+    required: true,
+    default: null
+  },
   createAt: {
     type: Date,
     default: Date.now

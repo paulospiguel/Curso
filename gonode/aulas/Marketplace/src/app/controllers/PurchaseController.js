@@ -6,7 +6,7 @@ const Queue = require('../services/Queue')
 
 class PurchaseController {
   async index (req, res) {
-    const purchases = await Purchase.find()
+    const purchases = await Purchase.find({ status: null })
 
     return res.json(purchases)
   }
@@ -24,10 +24,29 @@ class PurchaseController {
     }).save()
 
     /** SALVANDO NO BANCO DE DADOS */
-    const purchase = await Purchase.create(req.params.id, {
+
+    const purchase = await Purchase.create({
       ...req.body,
       user: req.userId
     })
+
+    return res.json(purchase)
+  }
+
+  async purchaseUpdate (req, res) {
+    const purchaseAd = await Purchase.findById(req.params.id)
+
+    const purchase = await Purchase.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    })
+
+    await Ad.findByIdAndUpdate(
+      purchaseAd.ad,
+      { purchasedBy: purchaseAd.id },
+      {
+        new: true
+      }
+    )
 
     return res.json(purchase)
   }
