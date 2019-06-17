@@ -2,7 +2,7 @@ section#post-list {
   width: 100%;
   max-width: 580px;
   margin: 0 auto;
-  padding: 0 30%;
+  padding: 0 30px;
 }
 
 section#post-list article {
@@ -13,7 +13,6 @@ section#post-list article {
 
 section#post-list article header {
   padding: 20px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
